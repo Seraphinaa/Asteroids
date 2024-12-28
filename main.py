@@ -1,3 +1,4 @@
+import sys
 import pygame
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -23,6 +24,10 @@ def main():
                 return
         for elt in updatable:
             elt.update(dt)
+        for elt in asteroids:
+            if player.collides(elt):
+                print("Game over!")
+                sys.exit()
         screen.fill("black")
         for elt in drawable:
             elt.draw(screen)
