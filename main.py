@@ -27,10 +27,14 @@ def main():
                 return
         for elt in updatable:
             elt.update(dt)
-        for elt in asteroids:
-            if player.collides(elt):
+        for asteroid in asteroids:
+            if player.collides(asteroid):
                 print("Game over!")
                 sys.exit()
+            for shot in shots:
+                if asteroid.collides(shot):
+                    shot.kill()
+                    asteroid.split()
         screen.fill("black")
         for elt in drawable:
             elt.draw(screen)
